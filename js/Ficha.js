@@ -1,5 +1,5 @@
 const RADIO = 28;
-class Ficha {
+export class Ficha {
 
     constructor(id, img, jugador, posX, posY, ctx, color) {
         this.id = id;

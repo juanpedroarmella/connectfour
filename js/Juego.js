@@ -4,7 +4,7 @@ window.addEventListener("mouseup", () => {
     isMouseDown = false;
 })
 
-class Juego {
+export class Juego {
 
     constructor(ctx, canvas) {
         this.tablero = null;

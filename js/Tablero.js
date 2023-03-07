@@ -1,4 +1,4 @@
-class Tablero {
+export class Tablero {
     constructor(ctx, img, col, fil, posXinicial, posYinicial) {
         this.matrizTablero = [];
         this.col = col;
