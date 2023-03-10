@@ -1,20 +1,20 @@
 import { Juego } from "./Juego";
-import { Events } from "./Events";
+import { EventData } from "./EventData";
 
 export class MainMenu {
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   private imgTablero: string;
-  private filas: number = 0;
-  private columnas: number = 0;
+  private filas: number;
+  private columnas: number;
   private xEnLinea: number;
   private juego: Juego;
   private jugador1: string;
   private jugador2: string;
-  private imgFicha1: string | null = null;
-  private imgFicha2: string | null = null;
-  private colorFicha1: string | null = null;
-  private colorFicha2: string | null = null;
+  private imgFicha1: string | null;
+  private imgFicha2: string | null;
+  private colorFicha1: string | null;
+  private colorFicha2: string | null;
   private canvasHeight: number;
   private posInicialTableroX: number;
   private posInicialTableroY: number;
@@ -23,11 +23,25 @@ export class MainMenu {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
     this.imgTablero = imgTablero;
-    //this.juego = new Juego(this.ctx, this.canvas, this.jugador1, this.jugador2);
-
+    new EventData(this);
     this.juego.clearCanvas();
-    new Events(this);
+    this.nuevoJuego();
   }
+
+  private nuevoJuego = () => {
+    this.juego = new Juego(
+      this.ctx,
+      this.canvas,
+      this.jugador1,
+      this.jugador2,
+      { color: this.colorFicha1 as string, imgSrc: this.imgFicha1 as string },
+      { color: this.colorFicha2 as string, imgSrc: this.imgFicha2 as string },
+      this.filas,
+      this.columnas,
+      this.imgTablero,
+      this.xEnLinea
+    );
+  };
 
   public setImgFicha1 = (img: string | null) => {
     this.imgFicha1 = img;
@@ -111,7 +125,7 @@ export class MainMenu {
     this.colorFicha1 = null;
     this.imgFicha1 = null;
     this.imgFicha2 = null;
-    // this.juego = new Juego();
+    this.nuevoJuego();
   };
 
   public comenzarJuego = () => {

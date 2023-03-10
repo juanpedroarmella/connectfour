@@ -60,7 +60,8 @@ export class Juego {
     ficha2: ConfigFicha,
     cantCol: number,
     cantFil: number,
-    bgTablero: string
+    bgTablero: string,
+    xEnLinea: number
   ) {
     this.ctx = ctx;
     this.canvas = canvas;
@@ -72,7 +73,7 @@ export class Juego {
     this.cantFil = cantFil;
     this.bgTablero = bgTablero;
     this.isMouseDown = false;
-    this.xEnLinea = this.xEnLinea;
+    this.xEnLinea = xEnLinea;
     this.repartirFichas();
     this.timer = Juego.totalTime;
   }

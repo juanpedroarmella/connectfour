@@ -1,6 +1,6 @@
 import { MainMenu } from "./MainMenu";
 
-export class Events {
+export class EventData {
   private main: MainMenu;
 
   constructor(main: MainMenu) {
