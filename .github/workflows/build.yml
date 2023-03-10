@@ -21,8 +21,10 @@ jobs:
     - name: Build
       run: npm run build
       
-    - name: Create .nojekyll file
-      run: touch build/.nojekyll
+    - name: Move build folder
+      run: |
+        shopt -s dotglob
+        mv build/* ./
       
     - name: Debug
       run: ls -R
