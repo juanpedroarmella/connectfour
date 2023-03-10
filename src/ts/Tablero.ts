@@ -28,10 +28,13 @@ export class Tablero {
     this.cantCol = cantCol;
     this.cantFil = cantFil;
     this.inicMatriz();
-    this.cellBg.src = cellSrcImg;
-    this.cellBg.height = Tablero.CELL_WIDTH;
-    this.cellBg.width = Tablero.CELL_HEIGHT;
-    this.cellBg.img = new Image();
+    this.matrizTablero = [];
+    this.cellBg = {
+      src: cellSrcImg,
+      height: Tablero.CELL_WIDTH,
+      width: Tablero.CELL_HEIGHT,
+      img: new Image(),
+    };
     this.initX = initX;
     this.initY = initY;
     this.ctx = ctx;
@@ -201,7 +204,7 @@ export class Tablero {
       posInicial.x--;
       posInicial.y--;
     }
-    
+
     let cont = 0;
     while (posInicial.x <= this.cantCol && posInicial.y <= this.cantFil - 1) {
       if (this.matrizTablero[posInicial.y][posInicial.x] == jugador) {

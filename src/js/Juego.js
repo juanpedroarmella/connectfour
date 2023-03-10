@@ -227,7 +227,7 @@ export class Juego {
         });
     }
     drawFondo() {
-        let fondo = "../img/fondo.jpg";
+        let fondo = "./../../public/fondo.jpg";
         let imgFondo = new Image();
         imgFondo.src = fondo;
         imgF

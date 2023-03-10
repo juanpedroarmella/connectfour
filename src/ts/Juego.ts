@@ -350,7 +350,7 @@ export class Juego {
     );
 
   public drawFondo = () => {
-    const fondo = "../img/fondo.jpg";
+    const fondo = "./../../public/fondo.jpg";
     const imgFondo = new Image();
     imgFondo.src = fondo;
   };

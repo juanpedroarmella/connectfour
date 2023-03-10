@@ -1,0 +1,24 @@
+{
+  "name": "connectfour",
+  "version": "1.0.0",
+  "description": "connectfour game",
+  "main": "public/index.html",
+  "scripts": {
+    "build": "tsc",
+    "start": "live-server public/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanpedroarmella/connectfour.git"
+  },
+  "author": "juanpedroarmella@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juanpedroarmella/connectfour/issues"
+  },
+  "homepage": "https://github.com/juanpedroarmella/connectfour#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "typescript": "^4.9.5"
+  }
+}

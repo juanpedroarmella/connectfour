@@ -1,6 +1,6 @@
 let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
-let imgTablero = './img/celda.png';
+let imgTablero = './../../public/celda.png';
 
 let filas = 0;
 let columnas = 0;
@@ -47,8 +47,8 @@ function obtenerRuta2(event) {
 let lol = document.getElementById('leagueOfLegends');
 lol.addEventListener('click', () => {
     marcarSeleccionado(lol.parentNode, lol)
-    imgFicha1 = "./img/anivia.jfif"
-    imgFicha2 = "./img/gnar.jfif"
+    imgFicha1 = "./../../public/anivia.jfif"
+    imgFicha2 = "./../../public/gnar.jfif"
     colorImg1 = ""
     colorImg2 = ""
 
@@ -56,16 +56,16 @@ lol.addEventListener('click', () => {
 let naruto = document.getElementById('naruto');
 naruto.addEventListener('click', () => {
     marcarSeleccionado(naruto.parentNode, naruto)
-    imgFicha1 = "./img/naruto.jfif"
-    imgFicha2 = "./img/sasuke.jfif"
+    imgFicha1 = "./../../public/naruto.jfif"
+    imgFicha2 = "./../../public/sasuke.jfif"
     colorImg1 = ""
     colorImg2 = ""
 });
 let harryPotter = document.getElementById('harryPotter');
 harryPotter.addEventListener('click', () => {
     marcarSeleccionado(harryPotter.parentNode, harryPotter)
-    imgFicha1 = "./img/harryPotter.jfif"
-    imgFicha2 = "./img/voldemort.jfif"
+    imgFicha1 = "./../../public/harryPotter.jfif"
+    imgFicha2 = "./../../public/voldemort.jfif"
     colorImg1 = ""
     colorImg2 = ""
 });
