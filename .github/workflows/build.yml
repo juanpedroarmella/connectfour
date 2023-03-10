@@ -25,6 +25,9 @@ jobs:
       run: |
         shopt -s dotglob
         mv build/* ./
-      
+        
+    - name: Move bundle.js to build folder
+      run: mv bundle.js build/
+
     - name: Debug
       run: ls -R
