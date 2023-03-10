@@ -5,7 +5,8 @@
   "main": "public/index.html",
   "scripts": {
     "build": "npx webpack --mode=production",
-    "watch": "npx webpack --mode=production --watch"
+    "watch": "npx webpack --mode=production --watch",
+    "predeploy": "./deploy.sh"
   },
   "repository": {
     "type": "git",
