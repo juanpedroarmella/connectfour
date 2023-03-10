@@ -11,6 +11,11 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      
+    - name: Restore ignored files
+      run: |
+        git add . -f
+        git reset -- .
 
     - name: Debug
       run: pwd # comando para imprimir la ruta del directorio actual
