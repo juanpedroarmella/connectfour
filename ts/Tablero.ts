@@ -41,7 +41,7 @@ export class Tablero {
   }
 
   //Inicia la matriz tablero con valores nulos
-  private inicMatriz = () => {
+  public inicMatriz = () => {
     for (let i = 0; i < this.cantFil; i++) {
       this.matrizTablero[i] = [];
       for (let j = 0; j < this.cantCol; j++) {

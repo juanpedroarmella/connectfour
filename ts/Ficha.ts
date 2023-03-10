@@ -47,8 +47,8 @@ export class Ficha {
   public getColor = () => {
     return this.color;
   };
-  public getImg = () => {
-    return this.img;
+  public getImgSrc = () => {
+    return this.imgSrc;
   };
   public getCtx = () => {
     return this.ctx;

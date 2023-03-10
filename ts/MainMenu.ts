@@ -1,4 +1,4 @@
-import { Juego } from "../js/Juego";
+import { Juego } from "./Juego";
 import { Events } from "./Events";
 
 export class MainMenu {
@@ -16,24 +16,14 @@ export class MainMenu {
   private colorFicha1: string | null = null;
   private colorFicha2: string | null = null;
   private canvasHeight: number;
-  private reloj: HTMLElement;
   private posInicialTableroX: number;
   private posInicialTableroY: number;
 
-  constructor(
-    canvas: HTMLCanvasElement,
-    imgTablero: string,
-    jugador1: string,
-    jugador2: string,
-    reloj: HTMLElement
-  ) {
+  constructor(canvas: HTMLCanvasElement, imgTablero: string) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
     this.imgTablero = imgTablero;
-    this.juego = new Juego(this.ctx, this.canvas);
-    this.jugador1 = jugador1;
-    this.jugador2 = jugador2;
-    this.reloj = reloj;
+    //this.juego = new Juego(this.ctx, this.canvas, this.jugador1, this.jugador2);
 
     this.juego.clearCanvas();
     new Events(this);
@@ -121,22 +111,11 @@ export class MainMenu {
     this.colorFicha1 = null;
     this.imgFicha1 = null;
     this.imgFicha2 = null;
-    this.juego.reiniciarJuego(this.reloj);
+    // this.juego = new Juego();
   };
 
   public comenzarJuego = () => {
     document?.getElementById("alertColoresIguales")?.classList.add("hidden");
-    this.juego.comenzarJuego(
-      this.imgTablero,
-      this.imgFicha1,
-      this.imgFicha2,
-      this.columnas,
-      this.filas,
-      this.colorFicha1,
-      this.colorFicha2,
-      this.xEnLinea,
-      this.posInicialTableroX,
-      this.posInicialTableroY
-    );
+    this.juego.comenzarJuego(this.posInicialTableroX, this.posInicialTableroY);
   };
 }

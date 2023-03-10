@@ -5,21 +5,10 @@ export class Index {
     "myCanvas"
   ) as HTMLCanvasElement;
   private static imgTablero: string = "./img/celda.png";
-  private static reloj: HTMLElement = document.getElementById(
-    "timer"
-  ) as HTMLElement;
-  private static jugador1: string = "Jugador1";
-  private static jugador2: string = "Jugador2";
 
   constructor() {
-    new MainMenu(
-      Index.canvas as HTMLCanvasElement,
-      Index.imgTablero,
-      Index.jugador1,
-      Index.jugador2,
-      Index.reloj as HTMLElement
-    );
+    new MainMenu(Index.canvas as HTMLCanvasElement, Index.imgTablero);
   }
 }
 
-const index = new Index();
+new Index();
