@@ -5,7 +5,7 @@ interface CellBg {
   img: HTMLImageElement;
 }
 
-export class Tablero {
+export default class Tablero {
   private static CELL_WIDTH = 75;
   private static CELL_HEIGHT = 72;
 

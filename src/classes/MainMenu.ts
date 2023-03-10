@@ -1,35 +1,35 @@
-import { Juego } from "./Juego";
-import { EventData } from "./EventData";
+import Juego from "./Juego";
+import EventData from "./EventData";
 
-export class MainMenu {
+export default class MainMenu {
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   private imgTablero: string;
-  private filas: number;
-  private columnas: number;
-  private xEnLinea: number;
+  private filas: number = 0;
+  private columnas: number = 0;
+  private xEnLinea: number = 0;
   private juego: Juego;
-  private jugador1: string;
-  private jugador2: string;
-  private imgFicha1: string | null;
-  private imgFicha2: string | null;
-  private colorFicha1: string | null;
-  private colorFicha2: string | null;
-  private canvasHeight: number;
-  private posInicialTableroX: number;
-  private posInicialTableroY: number;
+  private jugador1: string = "";
+  private jugador2: string = "";
+  private imgFicha1: string | null = null;
+  private imgFicha2: string | null = null;
+  private colorFicha1: string | null = null;
+  private colorFicha2: string | null = null;
+  private canvasHeight: number = 0;
+  private posInicialTableroX: number = 0;
+  private posInicialTableroY: number = 0;
 
   constructor(canvas: HTMLCanvasElement, imgTablero: string) {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
     this.imgTablero = imgTablero;
     new EventData(this);
+    this.juego = this.nuevoJuego();
     this.juego.clearCanvas();
-    this.nuevoJuego();
   }
 
   private nuevoJuego = () => {
-    this.juego = new Juego(
+    return new Juego(
       this.ctx,
       this.canvas,
       this.jugador1,

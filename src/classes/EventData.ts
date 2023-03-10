@@ -1,6 +1,6 @@
-import { MainMenu } from "./MainMenu";
+import MainMenu from "./MainMenu";
 
-export class EventData {
+export default class EventData {
   private main: MainMenu;
 
   constructor(main: MainMenu) {
@@ -174,7 +174,7 @@ export class EventData {
     document?.getElementById("blue")?.classList.toggle("hidden");
   };
 
-  private obtenerRutaArchivo = (e) => {
+  private obtenerRutaArchivo = (e: Event) => {
     return new Promise<string>((resolve) => {
       let reader = new FileReader();
       let fileReader = (e.target as HTMLInputElement)?.files?.[0];

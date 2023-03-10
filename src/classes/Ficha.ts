@@ -1,4 +1,4 @@
-export class Ficha {
+export default class Ficha {
   private static RADIO: number = 28;
   private id: number;
   private imgSrc: string;

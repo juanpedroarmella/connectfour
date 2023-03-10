@@ -1,5 +1,5 @@
-import { Ficha } from "./Ficha";
-import { Tablero } from "./Tablero";
+import Ficha from "./Ficha";
+import Tablero from "./Tablero";
 
 interface Jugadores {
   jugador1: string;
@@ -15,7 +15,7 @@ interface ConfigFichas {
   ficha2: ConfigFicha;
 }
 
-export class Juego {
+export default class Juego {
   private static inicioXJ1: number = 125;
   private static inicioXJ2: number = 1250;
   private static inicioY: number = 500;
@@ -35,18 +35,18 @@ export class Juego {
   ) as HTMLElement;
 
   private timer: number;
-  private ultimaFichaClickeada: Ficha | null;
-  private tablero: Tablero;
+  private ultimaFichaClickeada: Ficha | null = null;
+  private tablero!: Tablero;
   private jugadores: Jugadores;
   private configFichas: ConfigFichas;
-  private turno: string;
-  private arrFichas: Ficha[];
+  private turno: string = "";
+  private arrFichas: Ficha[] = [];
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   private cantCol: number;
   private cantFil: number;
-  private interval: number;
-  private posiciones: [{ posX: number; posY: number }?];
+  private interval!: NodeJS.Timer;
+  private posiciones: [{ posX: number; posY: number }?] = [];
   private xEnLinea: number;
   private bgTablero: string;
   private isMouseDown: boolean;
@@ -65,10 +65,16 @@ export class Juego {
   ) {
     this.ctx = ctx;
     this.canvas = canvas;
-    this.jugadores.jugador1 = jugador1;
-    this.jugadores.jugador2 = jugador2;
-    this.configFichas.ficha1 = ficha1;
-    this.configFichas.ficha2 = ficha2;
+    this.jugadores = {
+      jugador1,
+      jugador2,
+    };
+
+    this.configFichas = {
+      ficha1,
+      ficha2,
+    };
+
     this.cantCol = cantCol;
     this.cantFil = cantFil;
     this.bgTablero = bgTablero;
@@ -461,7 +467,7 @@ export class Juego {
   };
 
   //detiene el timer
-  public stopIntervalTimer = (interval: number) => {
+  public stopIntervalTimer = (interval: NodeJS.Timer) => {
     clearInterval(interval);
   };
 
