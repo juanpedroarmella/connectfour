@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx webpack --mode=production",
     "watch": "npx webpack --mode=production --watch",
-    "predeploy": "./deploy.sh"
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
