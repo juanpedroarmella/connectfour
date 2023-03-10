@@ -5,8 +5,7 @@
   "main": "public/index.html",
   "scripts": {
     "build": "npx webpack --mode=production",
-    "watch": "npx webpack --mode=production --watch",
-    "deploy": "gh-pages -d build"
+    "watch": "npx webpack --mode=production --watch"
   },
   "repository": {
     "type": "git",
