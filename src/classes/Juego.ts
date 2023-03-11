@@ -69,19 +69,18 @@ export default class Juego {
       jugador1,
       jugador2,
     };
-
+    
     this.configFichas = {
       ficha1,
       ficha2,
     };
-
     this.cantCol = cantCol;
     this.cantFil = cantFil;
     this.bgTablero = bgTablero;
     this.isMouseDown = false;
     this.xEnLinea = xEnLinea;
     this.repartirFichas();
-    this.timer = Juego.totalTime;
+    this.timer = 0;
   }
 
   //Invoca los metodos ponerFichas, para dibujar las fichas en las posiciones indicadas
@@ -131,7 +130,7 @@ export default class Juego {
   };
 
   //Inicia los metodos necesarios para comenzar el juego
-  comenzar = (initX: number, initY: number) => {
+  public comenzar = (initX: number, initY: number) => {
     this.clearCanvas();
     this.tablero = new Tablero(
       this.ctx,
@@ -295,7 +294,7 @@ export default class Juego {
         if (this.tablero.hayEnLinea(posX, posY, turnoActual, this.xEnLinea)) {
           this.mostrarGanador(turnoActual);
           this.turno = "";
-          this.stopIntervalTimer(this.interval);
+          this.stopIntervalTimer();
         }
       } else {
         if (this.ultimaFichaClickeada != null) this.retornarFichaAlFichero();
@@ -429,6 +428,7 @@ export default class Juego {
     this.comenzar(posXTablero, posYTablero);
     Juego.timeOver.classList.add("hidden");
     this.closePopUp();
+    this.timer = Juego.totalTime;
     this.interval = setInterval(() => {
       if (this.timer >= 0) {
         Juego.reloj.innerHTML = this.convertMinSec(this.timer).toString();
@@ -436,9 +436,10 @@ export default class Juego {
       } else {
         Juego.timeOver.classList.remove("hidden");
         this.turno = "";
-        this.stopIntervalTimer(this.interval);
+        this.stopIntervalTimer();
       }
     }, 1000);
+    
   };
 
   //Muestra el pop-up de configuracion inicial del juego.
@@ -467,12 +468,13 @@ export default class Juego {
   };
 
   //detiene el timer
-  public stopIntervalTimer = (interval: NodeJS.Timer) => {
-    clearInterval(interval);
+  public stopIntervalTimer = () => {
+    clearInterval(this.interval);
   };
 
   //Convierte un valor entero en formato minutos segund
   public convertMinSec = (value: number) => {
+    console.log(value);
     let minutes: number | string = Math.floor(value / 60);
     let seconds: number | string = value - minutes * 60;
     if (minutes < 10) {

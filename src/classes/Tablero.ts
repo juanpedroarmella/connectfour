@@ -27,8 +27,8 @@ export default class Tablero {
   ) {
     this.cantCol = cantCol;
     this.cantFil = cantFil;
-    this.inicMatriz();
     this.matrizTablero = [];
+    this.inicMatriz();
     this.cellBg = {
       src: cellSrcImg,
       height: Tablero.CELL_WIDTH,

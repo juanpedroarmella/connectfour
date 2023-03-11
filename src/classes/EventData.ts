@@ -20,7 +20,7 @@ export default class EventData {
     document
       .getElementById("elegirImagen2")
       ?.addEventListener("change", async (e) => {
-        main.setImgFicha1(await this.obtenerRutaArchivo(e));
+        main.setImgFicha2(await this.obtenerRutaArchivo(e));
         main.setColorFicha2(null);
       });
 
@@ -63,7 +63,7 @@ export default class EventData {
         this.setColor(e.target as HTMLButtonElement, main, "red", "black")
       );
     document
-      .getElementById("blue")
+      .getElementById("green")
       ?.addEventListener("click", (e) =>
         this.setColor(e.target as HTMLButtonElement, main, "green", "violet")
       );
@@ -80,7 +80,7 @@ export default class EventData {
         this.setColor(
           e.target as HTMLButtonElement,
           main,
-          (e.target as HTMLButtonElement).value,
+          (e.target as HTMLInputElement).value,
           undefined
         )
       );
@@ -92,7 +92,7 @@ export default class EventData {
           e.target as HTMLButtonElement,
           main,
           undefined,
-          (e.target as HTMLButtonElement).value
+          (e.target as HTMLInputElement).value
         )
       );
 
@@ -137,6 +137,10 @@ export default class EventData {
     document
       ?.getElementById("reiniciarJuego3")
       ?.addEventListener("click", this.main.reiniciar);
+
+    document
+      ?.getElementById("comenzar")
+      ?.addEventListener("click", this.main.comenzarJuego);
   }
 
   private showChooseImg = () => {
@@ -231,12 +235,14 @@ export default class EventData {
     if (color1) {
       main.setImgFicha1(null);
       main.setColorFicha1(color1);
+      console.log("entre");
     }
 
     if (color2) {
       main.setImgFicha2(null);
       main.setColorFicha2(color2);
     }
+
   };
 
   private marcarCuatroEnLinea = (btn: HTMLButtonElement, main: MainMenu) => {

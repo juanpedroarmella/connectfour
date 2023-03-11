@@ -8,7 +8,7 @@ export default class MainMenu {
   private filas: number = 0;
   private columnas: number = 0;
   private xEnLinea: number = 0;
-  private juego: Juego;
+  private juego!: Juego;
   private jugador1: string = "";
   private jugador2: string = "";
   private imgFicha1: string | null = null;
@@ -24,11 +24,10 @@ export default class MainMenu {
     this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
     this.imgTablero = imgTablero;
     new EventData(this);
-    this.juego = this.nuevoJuego();
-    this.juego.clearCanvas();
   }
 
   private nuevoJuego = () => {
+    this.CanvasEvents();
     return new Juego(
       this.ctx,
       this.canvas,
@@ -53,6 +52,7 @@ export default class MainMenu {
 
   public setColorFicha1 = (color: string | null) => {
     this.colorFicha1 = color;
+
   };
 
   public setColorFicha2 = (color: string | null) => {
@@ -121,15 +121,14 @@ export default class MainMenu {
   };
 
   public reiniciar = () => {
-    this.colorFicha1 = null;
-    this.colorFicha1 = null;
-    this.imgFicha1 = null;
-    this.imgFicha2 = null;
-    this.nuevoJuego();
+    this.juego.showPopUp();
+    this.juego.stopIntervalTimer();
+    this.juego = this.nuevoJuego();
   };
 
   public comenzarJuego = () => {
-    document?.getElementById("alertColoresIguales")?.classList.add("hidden");
+    this.juego = this.nuevoJuego();
+    this.juego.clearCanvas();
     this.juego.comenzarJuego(this.posInicialTableroX, this.posInicialTableroY);
   };
 }
