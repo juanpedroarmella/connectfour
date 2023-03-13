@@ -47,7 +47,7 @@ export default class Juego {
   private cantCol: number;
   private cantFil: number;
   private interval!: NodeJS.Timer;
-  private posiciones: [{ posX: number; posY: number }?] = [];
+  private posicionesX: [{ posI: number; posF: number }?] = [];
   private xEnLinea: number;
   private bgTablero: string;
   private isMouseDown: boolean;
@@ -218,14 +218,14 @@ export default class Juego {
 
   //Completa el arreglo posiciones con las posiciones inicial y final de cada celda del tablero
   public completarPosiciones = () => {
-    this.posiciones = [];
+    this.posicionesX = [];
     let posInicial = this.tablero.getPosComienzoTableroX();
     for (let i = 0; i < this.cantCol; i++) {
       let pos = {
-        posX: posInicial + 3,
-        posY: posInicial + 72,
+        posI: posInicial + 3,
+        posF: posInicial + 72,
       }; //[celda1, posi 500, posF 572]
-      this.posiciones.push(pos);
+      this.posicionesX.push(pos);
       posInicial += 75;
     }
   };
@@ -241,11 +241,11 @@ export default class Juego {
 
   //Obtiene la posicion x de la matriz (a partir de la posicion x del mouse) para colocar la ficha
   public getPosX = (e: MouseEvent) => {
-    const { x, y } = getCanvasMousePosition(this.canvas, e);
-    for (let x = 0; x < this.posiciones.length; x++) {
+    const { x: posX } = getCanvasMousePosition(this.canvas, e);
+    for (let x = 0; x < this.posicionesX.length; x++) {
       if (
-        x >= (this.posiciones[x]?.posX || 0) &&
-        x <= (this.posiciones[x]?.posX || 0)
+        posX >= (this.posicionesX[x]?.posI || 0) &&
+        posX <= (this.posicionesX[x]?.posF || 0)
       ) {
         return x;
       }
@@ -256,7 +256,7 @@ export default class Juego {
   //Obtiene la posicion y de la matriz tablero para colocar la ficha
   public getPosY = (posX: number) => {
     let matrizTablero = this.tablero.getMatrizTablero();
-    for (let i = this.cantCol - 1; i >= 0; i--) {
+    for (let i = this.cantCol; i >= 0; i--) {
       if (matrizTablero[i][posX] == null) {
         return i;
       }
@@ -287,10 +287,11 @@ export default class Juego {
           this.ultimaFichaClickeada.getPertenece()
         );
         let turnoActual = this.turno;
+        this.cambiarTurno();
+
         Juego.turnoHtml.innerHTML = "Turno de " + this.turnoActual();
         this.colocarFicha(posX, posY); //esto es para el canvas
 
-        this.cambiarTurno();
         if (this.tablero.hayEnLinea(posX, posY, turnoActual, this.xEnLinea)) {
           this.mostrarGanador(turnoActual);
           this.turno = "";
@@ -323,9 +324,9 @@ export default class Juego {
 
   public colocarFicha = (x: number, y: number) => {
     let medidasCelda = this.tablero.getMedidaCelda();
-    let valorX = this.posiciones[x];
+    let valorX = this.posicionesX[x];
     if (valorX && this.ultimaFichaClickeada) {
-      let posX = (valorX.posX + valorX.posY) / 2;
+      let posX = (valorX.posI + valorX.posF) / 2;
       let posY =
         this.tablero.getPosComienzoTableroY() + y * medidasCelda.height + 37;
       let newFicha = new Ficha(
@@ -356,8 +357,8 @@ export default class Juego {
 
   public drawFichasYTablero = () => {
     this.clearCanvas();
-    this.drawFichas();
     this.tablero.dibujarTablero();
+    this.drawFichas();
     this.drawUserName(
       this.jugadores.jugador1,
       Juego.j1NamePosX,

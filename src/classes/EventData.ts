@@ -76,7 +76,7 @@ export default class EventData {
 
     document
       .getElementById("elegirColor1")
-      ?.addEventListener("click", (e) =>
+      ?.addEventListener("change", (e) =>
         this.setColor(
           e.target as HTMLButtonElement,
           main,
@@ -87,7 +87,7 @@ export default class EventData {
 
     document
       .getElementById("elegirColor2")
-      ?.addEventListener("click", (e) =>
+      ?.addEventListener("change", (e) =>
         this.setColor(
           e.target as HTMLButtonElement,
           main,

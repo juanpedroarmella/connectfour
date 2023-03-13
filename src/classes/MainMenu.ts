@@ -16,8 +16,8 @@ export default class MainMenu {
   private jugador2: string = "";
   private imgFicha1: string | null = null;
   private imgFicha2: string | null = null;
-  private colorFicha1: string | null = null;
-  private colorFicha2: string | null = null;
+  private colorFicha1: string = "black";
+  private colorFicha2: string = "black";
   private canvasHeight: number = 0;
   private posInicialTableroX: number = 0;
   private posInicialTableroY: number = 0;
