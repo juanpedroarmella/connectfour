@@ -1,3 +1,4 @@
+import { getCanvasMousePosition } from "@utils/getCanvasMousePosition";
 import Ficha from "./Ficha";
 import Tablero from "./Tablero";
 
@@ -61,7 +62,7 @@ export default class Juego {
     cantCol: number,
     cantFil: number,
     bgTablero: string,
-    xEnLinea: number,
+    xEnLinea: number
   ) {
     this.ctx = ctx;
     this.canvas = canvas;
@@ -195,8 +196,8 @@ export default class Juego {
       this.ultimaFichaClickeada.setResaltado(false); //a la ultima figura seleccionada, le saca el resaltado
       this.ultimaFichaClickeada = null;
     }
-    let clickFicha = this.buscarFichaClickeada(e.clientX, e.clientY);
-    console.log(clickFicha)
+    const { x, y } = getCanvasMousePosition(this.canvas, e);
+    let clickFicha = this.buscarFichaClickeada(x, y);
     if (clickFicha != null) {
       clickFicha.setResaltado(true); //la resalto
       this.ultimaFichaClickeada = clickFicha;
@@ -211,12 +212,8 @@ export default class Juego {
     heightMax: number,
     minWidth: number
   ) => {
-    return (
-      e.clientX >= minWidth &&
-      e.clientX <= widthMax &&
-      e.clientY >= 0 &&
-      e.clientY <= heightMax
-    );
+    const { x, y } = getCanvasMousePosition(this.canvas, e);
+    return x >= minWidth && y <= widthMax && x >= 0 && y <= heightMax;
   };
 
   //Completa el arreglo posiciones con las posiciones inicial y final de cada celda del tablero
@@ -235,18 +232,20 @@ export default class Juego {
 
   //Arrastra la ficha hacia donde se encuentra el mouse
   public onMouseMove = (e: MouseEvent) => {
+    const { x, y } = getCanvasMousePosition(this.canvas, e);
     if (this.isMouseDown && this.ultimaFichaClickeada != null) {
-      this.ultimaFichaClickeada.setPosition(e.clientX, e.clientY);
+      this.ultimaFichaClickeada.setPosition(x, y);
       this.drawFichasYTablero();
     }
   };
 
   //Obtiene la posicion x de la matriz (a partir de la posicion x del mouse) para colocar la ficha
   public getPosX = (e: MouseEvent) => {
+    const { x, y } = getCanvasMousePosition(this.canvas, e);
     for (let x = 0; x < this.posiciones.length; x++) {
       if (
-        e.clientX >= (this.posiciones[x]?.posX || 0) &&
-        e.clientX <= (this.posiciones[x]?.posX || 0)
+        x >= (this.posiciones[x]?.posX || 0) &&
+        x <= (this.posiciones[x]?.posX || 0)
       ) {
         return x;
       }

@@ -47,7 +47,6 @@ export default class MainMenu {
   };
 
   public drawFondo = () => {
-    console.log("hola");
     const fondo = "./../../public/fondo.jpg";
     const imgFondo = new Image();
     imgFondo.src = fondo;

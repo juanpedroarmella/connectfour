@@ -1,5 +1,5 @@
 export default class Ficha {
-  private static RADIO: number = 28;
+  private static RADIO: number = 32;
   private id: number;
   private imgSrc: string;
   private img: HTMLImageElement;
@@ -58,8 +58,7 @@ export default class Ficha {
   public isPointInside = (x: number, y: number) => {
     const _x = this.posX - x;
     const _y = this.posY - y;
-    console.log(Math.sqrt(_x * _x + _y * _y) < Ficha.RADIO)
-    return Math.sqrt(_x * _x + _y * _y) < Ficha.RADIO;
+    return Math.sqrt(_x * _x + _y * _y) <= Ficha.RADIO;
   };
 
   public setResaltado = (res: boolean) => {
@@ -126,5 +125,12 @@ export default class Ficha {
     if (this.resaltado === true) {
       this.resaltarFicha();
     }
+  };
+
+  public getCoordenadas = () => {
+    return {
+      posX: this.posX,
+      posY: this.posY,
+    };
   };
 }
