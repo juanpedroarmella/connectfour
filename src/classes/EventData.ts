@@ -235,7 +235,6 @@ export default class EventData {
     if (color1) {
       main.setImgFicha1(null);
       main.setColorFicha1(color1);
-      console.log("entre");
     }
 
     if (color2) {

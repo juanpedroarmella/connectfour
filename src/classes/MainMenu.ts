@@ -2,6 +2,9 @@ import Juego from "./Juego";
 import EventData from "./EventData";
 
 export default class MainMenu {
+  private static canvasWidth: number = 1500;
+  private static canvasHeight: number = 850;
+
   private canvas: HTMLCanvasElement;
   private ctx: CanvasRenderingContext2D;
   private imgTablero: string;
@@ -23,6 +26,7 @@ export default class MainMenu {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
     this.imgTablero = imgTablero;
+    this.drawFondo();
     new EventData(this);
   }
 
@@ -42,6 +46,22 @@ export default class MainMenu {
     );
   };
 
+  public drawFondo = () => {
+    console.log("hola");
+    const fondo = "./../../public/fondo.jpg";
+    const imgFondo = new Image();
+    imgFondo.src = fondo;
+    imgFondo.onload = () => {
+      this.ctx.drawImage(
+        imgFondo,
+        0,
+        0,
+        MainMenu.canvasWidth,
+        MainMenu.canvasHeight
+      );
+    };
+  };
+
   public setImgFicha1 = (img: string | null) => {
     this.imgFicha1 = img;
   };
@@ -52,7 +72,6 @@ export default class MainMenu {
 
   public setColorFicha1 = (color: string | null) => {
     this.colorFicha1 = color;
-
   };
 
   public setColorFicha2 = (color: string | null) => {
@@ -93,6 +112,10 @@ export default class MainMenu {
     this.columnas = 10;
     this.filas = 9;
     this.xEnLinea = 7;
+  };
+
+  public getCanvasHeight = () => {
+    return this.canvasHeight;
   };
 
   private CanvasEvents = () => {

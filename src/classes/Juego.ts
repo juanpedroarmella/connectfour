@@ -61,7 +61,7 @@ export default class Juego {
     cantCol: number,
     cantFil: number,
     bgTablero: string,
-    xEnLinea: number
+    xEnLinea: number,
   ) {
     this.ctx = ctx;
     this.canvas = canvas;
@@ -69,7 +69,7 @@ export default class Juego {
       jugador1,
       jugador2,
     };
-    
+
     this.configFichas = {
       ficha1,
       ficha2,
@@ -196,6 +196,7 @@ export default class Juego {
       this.ultimaFichaClickeada = null;
     }
     let clickFicha = this.buscarFichaClickeada(e.clientX, e.clientY);
+    console.log(clickFicha)
     if (clickFicha != null) {
       clickFicha.setResaltado(true); //la resalto
       this.ultimaFichaClickeada = clickFicha;
@@ -354,16 +355,10 @@ export default class Juego {
         ele.getPertenece() != ficha.getPertenece()
     );
 
-  public drawFondo = () => {
-    const fondo = "./../../public/fondo.jpg";
-    const imgFondo = new Image();
-    imgFondo.src = fondo;
-  };
-
-  //Dibuja el tablero, las fichas, y los nombres de los jguadores
   public drawFichasYTablero = () => {
     this.clearCanvas();
     this.drawFichas();
+    this.tablero.dibujarTablero();
     this.drawUserName(
       this.jugadores.jugador1,
       Juego.j1NamePosX,
@@ -439,7 +434,6 @@ export default class Juego {
         this.stopIntervalTimer();
       }
     }, 1000);
-    
   };
 
   //Muestra el pop-up de configuracion inicial del juego.
@@ -474,7 +468,6 @@ export default class Juego {
 
   //Convierte un valor entero en formato minutos segund
   public convertMinSec = (value: number) => {
-    console.log(value);
     let minutes: number | string = Math.floor(value / 60);
     let seconds: number | string = value - minutes * 60;
     if (minutes < 10) {

@@ -58,6 +58,7 @@ export default class Ficha {
   public isPointInside = (x: number, y: number) => {
     const _x = this.posX - x;
     const _y = this.posY - y;
+    console.log(Math.sqrt(_x * _x + _y * _y) < Ficha.RADIO)
     return Math.sqrt(_x * _x + _y * _y) < Ficha.RADIO;
   };
 

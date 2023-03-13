@@ -73,7 +73,7 @@ export default class Tablero {
     posY = this.initY;
   };
 
-  private dibujarTablero = () => {
+  public dibujarTablero = () => {
     if (this.cellBg.img.src === "") {
       this.cellBg.img.src = this.cellBg.src;
       this.cellBg.img.onload = this.cargarImagen.bind(this);
