@@ -17,7 +17,7 @@ interface ConfigFichas {
 }
 
 export default class Juego {
-  private static inicioXJ1: number = 125;
+  private static inicioXJ1: number = 150;
   private static inicioXJ2: number = 1250;
   private static inicioY: number = 500;
   private static totalTime: number = 5 * 60;
@@ -133,6 +133,7 @@ export default class Juego {
   //Inicia los metodos necesarios para comenzar el juego
   public comenzar = (initX: number, initY: number) => {
     this.clearCanvas();
+
     this.tablero = new Tablero(
       this.ctx,
       this.bgTablero,
@@ -152,6 +153,7 @@ export default class Juego {
       Juego.j2NamePosY
     );
     this.repartirFichas();
+    this.drawArrows();
     this.completarPosiciones();
   };
 
@@ -224,7 +226,7 @@ export default class Juego {
       let pos = {
         posI: posInicial + 3,
         posF: posInicial + 72,
-      }; //[celda1, posi 500, posF 572]
+      };
       this.posicionesX.push(pos);
       posInicial += 75;
     }
@@ -355,9 +357,37 @@ export default class Juego {
         ele.getPertenece() != ficha.getPertenece()
     );
 
+  public drawArrows = () => {
+    const arrowWidth = 15;
+    const arrowHeight = 20;
+    let width = this.tablero.getPosComienzoTableroX() + 35;
+    const height = 60;
+
+    for (let x = 0; x < this.cantCol; x++) {
+      this.ctx.beginPath();
+      this.ctx.moveTo(width, 20);
+      this.ctx.lineTo(width, height - arrowHeight);
+      this.ctx.lineWidth = 5;
+      this.ctx.strokeStyle = "white";
+      this.ctx.stroke();
+
+      // Draw arrowhead
+      this.ctx.beginPath();
+      this.ctx.moveTo(width - arrowWidth / 2, height - arrowHeight);
+      this.ctx.lineTo(width + arrowWidth / 2, height - arrowHeight);
+      this.ctx.lineTo(width, height);
+      this.ctx.closePath();
+      this.ctx.fillStyle = "white";
+      this.ctx.fill();
+
+      width += 75;
+    }
+  };
+
   public drawFichasYTablero = () => {
     this.clearCanvas();
     this.tablero.dibujarTablero();
+    this.drawArrows();
     this.drawFichas();
     this.drawUserName(
       this.jugadores.jugador1,
@@ -385,7 +415,7 @@ export default class Juego {
     this.ctx.fillText(jugador, x, y);
   };
 
-  //borra el canvas
+  //borra el this.canvas
   clearCanvas() {
     this.ctx.fillStyle = "#05223c";
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);

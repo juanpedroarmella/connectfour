@@ -28,10 +28,10 @@ export default class MainMenu {
     this.imgTablero = imgTablero;
     this.drawFondo();
     new EventData(this);
-    this.CanvasEvents();
   }
 
   private nuevoJuego = () => {
+    this.CanvasEvents();
     return new Juego(
       this.ctx,
       this.canvas,
@@ -117,35 +117,47 @@ export default class MainMenu {
     return this.canvasHeight;
   };
 
+  private mouseoutHandler = (e) => {
+    if (this.juego.getTablero() != null) {
+      this.juego.onMouseOut();
+    }
+  };
+  private mousedownHandler = (e) => {
+    if (this.juego.getTablero() != null) {
+      this.juego.onMouseDown(e);
+    }
+  };
+  private mousemoveHandler = (e) => {
+    if (this.juego.getTablero() != null) {
+      this.juego.onMouseMove(e);
+    }
+  };
+  private mouseupHandler = (e) => {
+    if (this.juego.getTablero() != null) {
+      this.juego.onMouseUp(e);
+    }
+  };
+
   private CanvasEvents = () => {
-    this.canvas.addEventListener("mouseout", (e) => {
-      if (this.juego.getTablero() != null) {
-        this.juego.onMouseOut();
-      }
-    });
-    this.canvas.addEventListener("mousedown", (e) => {
-      if (this.juego.getTablero() != null) {
-        this.juego.onMouseDown(e);
-      }
-    });
+    this.canvas.addEventListener("mouseout", this.mouseoutHandler);
+    this.canvas.addEventListener("mousedown", this.mousedownHandler);
+    this.canvas.addEventListener("mousemove", this.mousemoveHandler);
+    this.canvas.addEventListener("mouseup", this.mouseupHandler);
+  };
 
-    this.canvas.addEventListener("mousemove", (e) => {
-      if (this.juego.getTablero() != null) {
-        this.juego.onMouseMove(e);
-      }
-    });
-
-    this.canvas.addEventListener("mouseup", (e) => {
-      if (this.juego.getTablero() != null) {
-        this.juego.onMouseUp(e);
-      }
-    });
+  // Más adelante para eliminar los eventos
+  private removeCanvasEvents = () => {
+    this.canvas.removeEventListener("mouseout", this.mouseoutHandler);
+    this.canvas.removeEventListener("mousedown", this.mousedownHandler);
+    this.canvas.removeEventListener("mousemove", this.mousemoveHandler);
+    this.canvas.removeEventListener("mouseup", this.mouseupHandler);
   };
 
   public reiniciar = () => {
     this.juego.clearCanvas();
     this.juego.showPopUp();
     this.juego.stopIntervalTimer();
+    this.removeCanvasEvents();
   };
 
   public comenzarJuego = () => {
