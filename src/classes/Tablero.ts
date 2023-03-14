@@ -189,12 +189,7 @@ export default class Tablero {
     );
   };
 
-  private busquedaIzqSuperiorADerInferior = (
-    posX: number,
-    posY: number,
-    jugador: string,
-    xEnLinea: number
-  ): boolean => {
+  busquedaIzqSuperiorADerInferior(posX, posY, jugador, xEnLinea) {
     let posInicial = {
       x: posX,
       y: posY,
@@ -204,7 +199,6 @@ export default class Tablero {
       posInicial.x--;
       posInicial.y--;
     }
-
     let cont = 0;
     while (posInicial.x <= this.cantCol && posInicial.y <= this.cantFil - 1) {
       if (this.matrizTablero[posInicial.y][posInicial.x] == jugador) {
@@ -217,24 +211,14 @@ export default class Tablero {
       posInicial.y++;
     }
     return false;
-  };
+  }
 
-  private busquedaIzqInferiorADerSuperior = (
-    posX: number,
-    posY: number,
-    jugador: string,
-    xEnLinea: number
-  ): boolean => {
+  busquedaIzqInferiorADerSuperior(posX, posY, jugador, xEnLinea) {
     let posInicial = {
       x: posX,
       y: posY,
     };
     let cont = 0;
-
-    while (posInicial.x < this.cantCol && posInicial.y < this.cantFil) {
-      posInicial.x++;
-      posInicial.y++;
-    }
 
     while (posInicial.x >= 0 && posInicial.y <= this.cantFil - 1) {
       if (this.matrizTablero[posInicial.y][posInicial.x] == jugador) {
@@ -248,6 +232,5 @@ export default class Tablero {
       posInicial.x--;
       posInicial.y++;
     }
-    return false;
-  };
+  }
 }

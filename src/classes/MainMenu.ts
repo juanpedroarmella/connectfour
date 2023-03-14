@@ -28,10 +28,10 @@ export default class MainMenu {
     this.imgTablero = imgTablero;
     this.drawFondo();
     new EventData(this);
+    this.CanvasEvents();
   }
 
   private nuevoJuego = () => {
-    this.CanvasEvents();
     return new Juego(
       this.ctx,
       this.canvas,
@@ -143,14 +143,13 @@ export default class MainMenu {
   };
 
   public reiniciar = () => {
+    this.juego.clearCanvas();
     this.juego.showPopUp();
     this.juego.stopIntervalTimer();
-    this.juego = this.nuevoJuego();
   };
 
   public comenzarJuego = () => {
     this.juego = this.nuevoJuego();
-    this.juego.clearCanvas();
     this.juego.comenzarJuego(this.posInicialTableroX, this.posInicialTableroY);
   };
 }
