@@ -1,237 +1,135 @@
 <!DOCTYPE html>
 <html xmlns=" http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-      crossorigin="anonymous"
-    />
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
-    <link rel="stylesheet" href="src/css/style.css" />
-    <title>Entregable 2 - Cuatro en linea</title>
-  </head>
 
-  <body>
-    <div
-      id="pop-up"
-      class="container w-50 text-center bg-light border border-2 border-dark mt-2"
-    >
-      <h4 class="fs-3 m-3">¡Bienvenido! ¿Con que tablero desea jugar?</h4>
-      <div id="tablero">
-        <button
-          class="btn btn-dark m-2 bg-light my_btn"
-          style="color: black"
-          id="4linea"
-          type="button"
-        >
-          4 en linea
-        </button>
-        <button
-          class="btn btn-dark m-2 bg-light my_btn"
-          style="color: black"
-          id="5linea"
-          type="button"
-        >
-          5 en linea
-        </button>
-        <button
-          class="btn btn-dark m-2 bg-light my_btn"
-          style="color: black"
-          id="6linea"
-          type="button"
-        >
-          6 en linea
-        </button>
-        <button
-          class="btn btn-dark m-2 bg-light my_btn"
-          style="color: black"
-          id="7linea"
-          type="button"
-        >
-          7 en linea
-        </button>
-      </div>
-      <div id="jugadores">
-        <h4 class="fs-3 m-3">Nombre de los jugadores:</h4>
-        <input
-          type="text"
-          class="px-2 py-1 rounded border-0 mx-1 my-2"
-          placeholder="NombreJugador1"
-          id="nombreJugador1"
-          value="Jugador1"
-        />
-        <input
-          type="text"
-          class="px-2 py-1 rounded border-0 mx-1 my-2"
-          placeholder="NombreJugador2"
-          id="nombreJugador2"
-          value="Jugador2"
-        />
-      </div>
-      <div id="personalizar">
-        <h4 class="fs-3 m-3">Personalizar fichas:</h4>
-        <button
-          class="btn btn-dark m-2 bg-light my_btn"
-          style="color: black"
-          id="imagen"
-          type="button"
-        >
-          Imagen
-        </button>
-        <button
-          class="btn btn-dark m-2 bg-light my_btn"
-          style="color: black"
-          id="color"
-          type="button"
-        >
-          Color
-        </button>
-        <input type="file" id="elegirImagen1" class="hidden" />
-        <input type="file" id="elegirImagen2" class="hidden" />
-        <input type="color" id="elegirColor1" class="hidden" />
-        <input type="color" id="elegirColor2" class="hidden" />
-        <p class="hidden alert" id="alertColoresIguales">
-          Elige colores diferentes para una mejor experiencia
-        </p>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
+  <link rel="stylesheet" href="src/css/style.css" />
+  <title>Entregable 2 - Cuatro en linea</title>
+</head>
 
-      <div id="formatos">
-        <h4 class="fs-3 m-3">Jugar con alguno de nuestros formatos:</h4>
-        <button
-          class="btn btn-dark m-3 bg-light my_btn"
-          style="color: black"
-          id="verImagenes"
-          type="button"
-        >
-          Ver tematicas
-        </button>
-        <button
-          class="btn btn-dark m-3 bg-light my_btn"
-          style="color: black"
-          id="verColores"
-          type="button"
-        >
-          Ver colores
-        </button>
-        <button
-          class="btn btn-dark m-3 bg-light my_btn hidden"
-          style="color: black"
-          id="leagueOfLegends"
-          type="button"
-        >
-          League Of Legends
-        </button>
-        <button
-          class="btn btn-dark m-3 bg-light my_btn hidden"
-          style="color: black"
-          id="naruto"
-          type="button"
-        >
-          Naruto
-        </button>
-        <button
-          class="btn btn-dark m-3 bg-light my_btn hidden"
-          style="color: black"
-          id="harryPotter"
-          type="button"
-        >
-          Harry Potter
-        </button>
-
-        <button
-          class="btn btn-dark m-lg-4 bg-light my_btn hidden"
-          style="color: black"
-          id="red"
-          type="button"
-        >
-          Red & Black
-        </button>
-        <button
-          class="btn btn-dark m-lg-4 bg-light my_btn hidden"
-          style="color: black"
-          id="green"
-          type="button"
-        >
-          Green & Violet
-        </button>
-        <button
-          class="btn btn-dark m-lg-4 bg-light my_btn hidden"
-          style="color: black"
-          id="blue"
-          type="button"
-        >
-          Blue & Yellow
-        </button>
-      </div>
-      <button
-        id="comenzar"
-        class="btn btn-dark m-lg-4 bg-light my_btn"
-        style="color: black"
-      >
-        Comenzar Juego
+<body>
+  <div id="pop-up" class="container w-50 text-center bg-light border border-2 border-dark mt-2">
+    <h4 class="fs-3 m-3">¡Bienvenido! ¿Con que tablero desea jugar?</h4>
+    <div id="tablero">
+      <button class="btn btn-dark m-2 bg-light my_btn" style="color: black" id="4linea" type="button">
+        4 en linea
+      </button>
+      <button class="btn btn-dark m-2 bg-light my_btn" style="color: black" id="5linea" type="button">
+        5 en linea
+      </button>
+      <button class="btn btn-dark m-2 bg-light my_btn" style="color: black" id="6linea" type="button">
+        6 en linea
+      </button>
+      <button class="btn btn-dark m-2 bg-light my_btn" style="color: black" id="7linea" type="button">
+        7 en linea
       </button>
     </div>
-    <section>
-      <div class="container w-50 text-center mt-2 pt-2">
-        <div class="row text-center m-0">
-          <div class="col text-center m-0">
-            <button
-              id="reiniciarJuego"
-              class="btn btn-dark bg-light my_btn m-0 text-center"
-              style="color: black"
-            >
-              Reiniciar Juego
-            </button>
-          </div>
-          <div class="col text-center m-0">
-            <p id="timer" class="timer text-center mb-2">05:00</p>
-          </div>
-          <div class="col text-center m-0">
-            <h4 id="turno" class="m-0 text-center"></h4>
-          </div>
+    <div id="jugadores">
+      <h4 class="fs-3 m-3">Nombre de los jugadores:</h4>
+      <input type="text" class="px-2 py-1 rounded border-0 mx-1 my-2" placeholder="NombreJugador1" id="nombreJugador1"
+        value="Jugador1" />
+      <input type="text" class="px-2 py-1 rounded border-0 mx-1 my-2" placeholder="NombreJugador2" id="nombreJugador2"
+        value="Jugador2" />
+    </div>
+    <div id="personalizar">
+      <h4 class="fs-3 m-3">Personalizar fichas:</h4>
+      <button class="btn btn-dark m-2 bg-light my_btn" style="color: black" id="imagen" type="button">
+        Imagen
+      </button>
+      <button class="btn btn-dark m-2 bg-light my_btn" style="color: black" id="color" type="button">
+        Color
+      </button>
+      <input type="file" id="elegirImagen1" class="hidden" />
+      <input type="file" id="elegirImagen2" class="hidden" />
+      <input type="color" id="elegirColor1" class="hidden" />
+      <input type="color" id="elegirColor2" class="hidden" />
+      <p class="hidden alert" id="alertColoresIguales">
+        Elige colores diferentes para una mejor experiencia
+      </p>
+    </div>
+
+    <div id="formatos">
+      <h4 class="fs-3 m-3">Jugar con alguno de nuestros formatos:</h4>
+      <button class="btn btn-dark m-3 bg-light my_btn" style="color: black" id="verImagenes" type="button">
+        Ver tematicas
+      </button>
+      <button class="btn btn-dark m-3 bg-light my_btn" style="color: black" id="verColores" type="button">
+        Ver colores
+      </button>
+      <button class="btn btn-dark m-3 bg-light my_btn hidden" style="color: black" id="leagueOfLegends" type="button">
+        League Of Legends
+      </button>
+      <button class="btn btn-dark m-3 bg-light my_btn hidden" style="color: black" id="naruto" type="button">
+        Naruto
+      </button>
+      <button class="btn btn-dark m-3 bg-light my_btn hidden" style="color: black" id="harryPotter" type="button">
+        Harry Potter
+      </button>
+
+      <button class="btn btn-dark m-lg-4 bg-light my_btn hidden" style="color: black" id="red" type="button">
+        Red & Black
+      </button>
+      <button class="btn btn-dark m-lg-4 bg-light my_btn hidden" style="color: black" id="green" type="button">
+        Green & Violet
+      </button>
+      <button class="btn btn-dark m-lg-4 bg-light my_btn hidden" style="color: black" id="blue" type="button">
+        Blue & Yellow
+      </button>
+    </div>
+    <button id="comenzar" class="btn btn-dark m-lg-4 bg-light my_btn" style="color: black">
+      Comenzar Juego
+    </button>
+  </div>
+  <section>
+    <div class="container w-50 text-center mt-2 pt-2">
+      <div class="row text-center m-0">
+        <div class="col text-center m-0">
+          <button id="reiniciarJuego" class="btn btn-dark bg-light my_btn m-0 text-center" style="color: black">
+            Reiniciar Juego
+          </button>
+        </div>
+        <div class="col text-center m-0">
+          <p id="timer" class="timer text-center mb-2">05:00</p>
+        </div>
+        <div class="col text-center m-0">
+          <h4 id="turno" class="m-0 text-center"></h4>
         </div>
       </div>
-    </section>
-    <div
-      class="text-center bg-light border border-2 border-dark mt-2 hidden divMensaje"
-      id="timerOver"
-    >
-      <p id="showTimeOver ">¡Se termino el tiempo!</p>
-      <button
-        id="reiniciarJuego2"
-        class="btn btn-dark m-lg-4 bg-light my_btn"
-        style="color: black"
-      >
-        Volver a jugar
-      </button>
     </div>
-    <div
-      class="text-center bg-light border border-2 border-dark mt-2 hidden divMensaje"
-      id="ganador"
-    >
-      <span>Gano</span>
-      <p id="showGanador"></p>
-      <button
-        class="btn btn-dark m-lg-4 bg-light my_btn"
-        id="reiniciarJuego3"
-        style="color: black"
-      >
-        Volver a jugar
-      </button>
-    </div>
-    <div class="text-center rounded">
-      <canvas id="myCanvas" width="1500" height="850" class="rounded"> </canvas>
-    </div>
+  </section>
+  <div class="text-center bg-light border border-2 border-dark mt-2 hidden divMensaje" id="timerOver">
+    <p id="showTimeOver ">¡Se termino el tiempo!</p>
+    <button id="reiniciarJuego2" class="btn btn-dark m-lg-4 bg-light my_btn" style="color: black">
+      Volver a jugar
+    </button>
+  </div>
+  <div class="text-center bg-light border border-2 border-dark mt-2 hidden divMensaje" id="ganador">
+    <span>Gano</span>
+    <p id="showGanador"></p>
+    <button class="btn btn-dark m-lg-4 bg-light my_btn" id="reiniciarJuego3" style="color: black">
+      Volver a jugar
+    </button>
+  </div>
+  <div class="text-center rounded">
+    <canvas id="myCanvas" width="1500" height="850" class="rounded"> </canvas>
+  </div>
 
-    <footer>
-      <div class="footer text-center">
+  <footer>
+    <div class="footer text-center p-2">
+      <p class="mb-1">
         Desarrollado por Nahuel Falconaro y Juan Pedro Armella
-      </div>
-    </footer>
-  </body>
-  <script type="module" src="./build/bundle.js" ></script>
+      </p>
+      <p class="m-0">
+        © 2021
+      </p>
+    </div>
+  </footer>
+</body>
+<script type="module" src="./build/bundle.js"></script>
+
 </html>
