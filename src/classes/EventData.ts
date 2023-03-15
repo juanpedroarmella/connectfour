@@ -29,8 +29,8 @@ export default class EventData {
       ?.addEventListener("click", (e) =>
         this.setImagesPredefinidas(
           e.target as HTMLButtonElement,
-          "/public/anivia.jfif",
-          "/public/gnar.jfif",
+          "./public/anivia.jfif",
+          "./public/gnar.jfif",
           main
         )
       );
@@ -40,8 +40,8 @@ export default class EventData {
       ?.addEventListener("click", (e) =>
         this.setImagesPredefinidas(
           e.target as HTMLButtonElement,
-          "/public/naruto.jfif",
-          "/public/sasuke.jfif",
+          "./public/naruto.jfif",
+          "./public/sasuke.jfif",
           main
         )
       );
@@ -51,8 +51,8 @@ export default class EventData {
       ?.addEventListener("click", (e) =>
         this.setImagesPredefinidas(
           e.target as HTMLButtonElement,
-          "/public/harryPotter.jfif",
-          "/public/voldemort.jfif",
+          "./public/harryPotter.jfif",
+          "./public/voldemort.jfif",
           main
         )
       );
